@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://dbfound.googlecode.com/model"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dbfound.googlecode.com/model https://raw.githubusercontent.com/nfwork/dbfound/master/tags/model.xsd">
+	<param name="_session_user_code" dataType="varchar" sourcePath="session.user_code"/>
+	<!--  -->
+	<query>
+		<sql>
+		 <![CDATA[
+			SELECT 
+				id,
+				ckey,
+				cvalue,
+				remarks,
+				(select user_name from sys_user where user_id=c.create_by) as create_by,
+				create_date,
+				(select user_name from sys_user where user_id=c.last_update_by) as last_update_by,
+				last_update_date
+			FROM 
+				sys_config c
+			#WHERE_CLAUSE#
+			order by id
+		  ]]>
+		</sql>
+		<filter name="id" express="id= ${@id}"/>
+		<filter name="ckey" express="ckey = ${@ckey}"/>
+	</query>
+	
+	<execute name="add">
+		<param name="ckey" dataType="varchar" />
+		<param name="cvalue" dataType="varchar" />
+		<param name="remarks" dataType="varchar" />
+		<param name="user_id" dataType="number" scope="session" />
+		<sqls>
+			<collisionSql
+				where="exists (select 1 from sys_config where ckey = ${@ckey})"
+				message="参数key#${@ckey} 已经使用！" />
+			<executeSql>
+			   <![CDATA[
+				INSERT INTO sys_config(
+				    ckey,
+					cvalue,
+					remarks,
+					create_by,
+					create_date,
+					last_update_by,
+					last_update_date
+					)
+				VALUES(
+					${@ckey},
+					${@cvalue},
+					${@remarks},
+					${@user_id},
+					NOW(),
+					${@user_id},
+					NOW()
+				)
+				 ]]>
+			</executeSql>
+		</sqls>
+	</execute>
+
+	<execute name="update">
+		<param name="id" dataType="number" />
+		<param name="cvalue" dataType="varchar" />
+		<param name="remarks" dataType="varchar" />
+		<param name="user_id" dataType="number" sourcePath="session.user_id" />
+		<sqls>
+			<executeSql>
+			  <![CDATA[
+				update sys_config set
+					cvalue = ${@cvalue} ,
+					remarks= ${@remarks},
+					last_update_by = ${@user_id} ,
+					last_update_date = NOW()
+				where id = ${@id}
+				]]>
+			</executeSql>
+		</sqls>
+	</execute>
+	
+	<execute name="delete">
+		<param name="id" dataType="number" />
+		<sqls>
+			<executeSql>
+				delete from sys_config where id= ${@id}
+			</executeSql>
+		</sqls>
+	</execute>
+	
+</model>
