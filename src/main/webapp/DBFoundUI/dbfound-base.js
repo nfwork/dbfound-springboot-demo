@@ -259,7 +259,7 @@ $D = DBFound = {
 				if (null != cm.getCellEditor(colIndex)) {
 					cm.getCellEditor(colIndex).field.reset();
 					var editor = cm.getCellEditor(colIndex).field;
-					if(value===null){value=""}
+					if(value===null){value="";}
 					if (!editor.validateValue(value)) {
 						$D.showWarning("字段："+ cm.config[colIndex].header+ "，验证通不过！", function(e) {
 							grid.startEditing(rowIndex, colIndex);
@@ -485,8 +485,6 @@ $D = DBFound = {
 		if(document.body && document.body.clientHeight>height){
 			height=document.body.clientHeight;
 		}
-		
-		height = height - 2;
 		
 		if(!id){
 			return height;

@@ -16,7 +16,7 @@ body {
 	overflow-y: auto;
 }
 
-.x-selectable, .x-selectable * {
+.x-selectable,.x-selectable * {
 	-moz-user-select: text ! important;
 	-khtml-user-select: text ! important;
 	-webkit-user-select: text ! important;
@@ -182,7 +182,7 @@ td.ux-grid-hd-group-cell {
 	overflow: hidden;
 }
 
-.x-treegrid-root-table, .x-treegrid-col {
+.x-treegrid-root-table,.x-treegrid-col {
 	border-color: #ededed;
 }
 
@@ -192,114 +192,15 @@ td.ux-grid-hd-group-cell {
 }
 
 .ext-el-mask {
-	background-color: #fff;
-}
-
-.x-grid3-body .x-grid3-td-numberer .x-grid3-cell-inner {
-	overflow: visible;
+    background-color: #fff;
 }
 
 .x-panel-header {
-	background-image: none;
-	background-color: #99c8ea;
-	border: none;
+	background-image: url(../../images/panel_bg.png) !important;
 }
-
-.x-toolbar {
-	background-image: none;
-	border: none;
-}
-
-.x-panel-body {
-	border-color: #b7d7ee;
-}
-
-.x-panel-bbar .x-toolbar, .x-panel-tbar .x-toolbar {
-	border: none;
-}
-
-.x-date-middle, .x-date-left, .x-date-right {
-	background-image: none;
-	background-color: #579fd4;
-}
-
 ul.x-tab-strip-top {
-	background-image: none;
-	background-color: #157fcb;
-	color: #fff;
-	border-top: none;
+	background-image: url(../../images/panel_bg.png);
 }
-
-.x-tab-panel-header {
-	border-color: #157fcb;
-}
-
-.x-tree-node {
-	padding: 2px;
-}
-
-.x-layout-split {
-	background-color: #3992d4;
-}
-
-.x-layout-collapsed {
-	background-color: #3992d4;
-	border-color: #157fcb;
-}
-
-.x-tab-strip-top .x-tab-right, .x-tab-strip-top .x-tab-left,
-	.x-tab-strip-top .x-tab-strip-inner {
-	background-image: none;
-	background-color: #add2ed;
-	color: #fff
-}
-
-.x-tab-panel-header, .x-tab-panel-footer {
-	background-color: #add2ed;
-	border: none;
-}
-
-.x-window-tl .x-window-header {
-	background-image: none;
-	background-color: #157fcb;
-	color: #fff;
-}
-
-.x-window-tl {
-	background-image: none;
-	background-color: #157fcb;
-}
-
-.x-window-tr {
-	background-image: none;
-	background-color: #157fcb;
-}
-
-.x-window-ml {
-	background-image: none;
-	background-color: #99bbe8;
-}
-
-.x-window-mr {
-	background-image: none;
-	background-color: #99bbe8;
-}
-
-.x-window-bl {
-	background-image: none;
-	background-color: #99bbe8;
-}
-
-.x-window-br {
-	background-image: none;
-	background-color: #99bbe8;
-}
-
-.x-window-bc {
-	background-image: none;
-	background-color: #99bbe8;
-}
-
-.x-panel-btns {
-	background-color: #99bbe8;
+.x-grid3-body .x-grid3-td-numberer .x-grid3-cell-inner {
+overflow: visible;
 }
