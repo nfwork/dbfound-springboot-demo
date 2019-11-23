@@ -18,19 +18,22 @@ import java.io.IOException;
 
 @RestController
 public class FileController {
-	
+
 	@Autowired
 	ModelExecutor modelExecutor;
 
-    @PostMapping("/sys/file/upload")
-    public void upload(@RequestParam("file") MultipartFile file, @ContextAware Context context) throws IOException {
-        context.setParamData("file_name", file.getOriginalFilename());
-        context.setParamData("file_type",  file.getContentType());
-        context.setParamData("file_size",  FileSizeCalculator.getFileSize(file.getSize()));
-        context.setParamData("file",  file.getInputStream());
-       
-        ResponseObject responseObject = modelExecutor.execute(context, "upload", "add");
-        WebWriter.jsonWriter(context.response, JsonUtil.beanToJson(responseObject));
-    }
+	@PostMapping("/sys/file/upload")
+	public void upload(@RequestParam("file") MultipartFile file, @ContextAware Context context) throws IOException {
+		try {
+			context.setParamData("file_name", file.getOriginalFilename());
+			context.setParamData("file_type", file.getContentType());
+			context.setParamData("file_size", FileSizeCalculator.getFileSize(file.getSize()));
+			context.setParamData("file", file.getInputStream());
 
+			ResponseObject responseObject = modelExecutor.execute(context, "upload", "add");
+			WebWriter.jsonWriter(context.response, JsonUtil.beanToJson(responseObject));
+		} finally {
+			file.getInputStream().close();
+		}
+	}
 }
