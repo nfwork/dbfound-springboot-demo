@@ -1,4 +1,4 @@
-package com.nfwork.dbfound.springboot.demo;
+package com.nfwork.dbfound.springboot.demo.service;
 
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
