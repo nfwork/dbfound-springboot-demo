@@ -27,7 +27,7 @@
 			 if(checkFileSize(target)==false)return;
 			 Ext.getBody().mask('正在上传附件，请耐心等待.......', 'x-mask-loading');
 		     uploadform.form.submit({ 
-				    url:'upload.execute!add?pk_value=${param.pk_value}&table_name=${param.table_name}', 
+				    url:'sys/file/upload?pk_value=${param.pk_value}&table_name=${param.table_name}', 
 				    method:'post',
 				    success:function(response, action){ 
 		    	        Ext.getBody().unmask();
