@@ -5,6 +5,7 @@
 <html>
 	<head>
 		<d:includeLibrary />
+		<script type="text/javascript" src="DBFoundUI/dbfound-grid-cache.js"></script>
 	</head>
 	<script type="text/javascript">
 		function query() {
@@ -65,6 +66,10 @@
 				<d:column name="last_update_user" prompt="最后经手人" width="150" />
 			</d:columns>
 		</d:grid>
+		
+		<script type="text/javascript">
+			$D.gridCache("role.jsp/roleGrid",roleGrid)
+		</script>
 		
 	</body>
 </html>
