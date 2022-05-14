@@ -1,29 +1,37 @@
 package com.nfwork.dbfound.springboot.demo.controller;
 
+import com.nfwork.dbfound.springboot.demo.dto.User;
+import com.nfwork.dbfound.springboot.demo.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.nfwork.dbfound.starter.ModelExecutor;
 import com.github.nfwork.dbfound.starter.annotation.ContextAware;
 import com.nfwork.dbfound.core.Context;
 
+import java.util.Map;
+
 @RestController
 public class TestController {
-	
+
 	@Autowired
-	ModelExecutor modelExecutor;
-	
-	@RequestMapping("query1")
-	public Object query(@ContextAware Context context) {
-		return modelExecutor.query(context, "sys/user", null);
+	TestService testService;
+
+	@RequestMapping("query")
+	public Object query(@RequestParam Map param) {
+		return testService.query(param);
 	}
-	
-	@RequestMapping("query2")
-	public Object query(String userName) {
-		Context context = new Context();
-		context.setParamData("user_name", userName);
-		return modelExecutor.query(context, "sys/user", null);
+
+	@RequestMapping("queryUser")
+	public Object query(User user) {
+		return testService.queryUser(user);
+	}
+
+	@RequestMapping("updateUserName")
+	public Object updateUserName(User user) {
+		return testService.updateUserName(user);
 	}
 
 	@RequestMapping("context")

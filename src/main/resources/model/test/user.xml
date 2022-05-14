@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model xmlns="http://dbfound.googlecode.com/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dbfound.googlecode.com/model https://raw.githubusercontent.com/nfwork/dbfound/master/tags/model.xsd">
+
+	<query name="listByName">
+		<sql>
+			<![CDATA[
+				SELECT
+					u.user_id,
+					u.user_name,
+					u.role_id,
+					u.user_code
+				FROM SYS_USER u
+				#WHERE_CLAUSE#
+			 ]]>
+		</sql>
+		<filter name="userName" dataType="varchar" express="user_name like ${@userName}"/>
+	</query>
+
+	<execute name="updateName">
+		<param name="userId" dataType="number" />
+		<param name="userName"/>
+		<sqls>
+			<executeSql>
+				<![CDATA[
+				update sys_user set
+					user_name = ${@userName}
+				where user_id = ${@userId}
+			  ]]>
+			</executeSql>
+		</sqls>
+	</execute>
+
 	<query name="enabled">
 		<sql>
 		 <![CDATA[
