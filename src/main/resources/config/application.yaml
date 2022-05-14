@@ -1,0 +1,28 @@
+dbfound:
+  system:
+    underscore-to-camel-case: false
+  web:
+    base-path: /
+    open-session: true
+  datasource:
+    db0:
+      url: jdbc:mysql://192.168.1.111:3306/dbfound?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username:
+      password:
+      dialect: MySqlDialect
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: dbfound-springboot-demo
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+server:
+  servlet:
+    jsp:
+      init-parameters:
+        development=true:
