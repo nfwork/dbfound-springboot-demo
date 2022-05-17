@@ -85,4 +85,39 @@
 			</executeSql>
 		</sqls>
 	</execute>
+
+	<execute name="batch">
+		<sqls>
+			<batchExecuteSql sourcePath="dataList" batchSize="10">
+				<![CDATA[
+					 INSERT INTO sys_user
+						   (user_code,
+							user_name,
+							password,
+							role_id,
+							status,
+							create_by,
+							create_date,
+							last_update_by,
+							last_update_date)
+						VALUES
+						#BATCH_TEMPLATE_BEGIN#
+							(${@user_code},
+							${@user_name},
+							${@password},
+							${@role_id},
+							${@status},
+							2,
+							NOW(),
+							2,
+							NOW())
+						#BATCH_TEMPLATE_END#
+					on duplicate key
+					 update last_update_date = now(),
+							user_name = values(user_name)
+				]]>
+			</batchExecuteSql>
+		</sqls>
+	</execute>
+
 </model>
