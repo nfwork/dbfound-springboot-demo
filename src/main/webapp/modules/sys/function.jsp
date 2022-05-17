@@ -20,6 +20,15 @@
 				return true;
 			}
 		}
+
+		function setMapper(grid){
+			var function_module ={};
+			moduleStore.each(function (record){
+				function_module[record.data.module_id]= record.data.module_name;
+			})
+			grid.exportMappers={ function_module }
+			return true;
+		}
 	</script>
 	<body>
 	    <d:initProcedure>
@@ -52,6 +61,7 @@
 				<d:gridButton type="add"/>
 				<d:gridButton type="save"/>
 				<d:gridButton type="delete"/>
+				<d:gridButton type="excel" beforeAction="setMapper"/>
 			</d:toolBar>
 			<d:columns>
 				<d:column name="function_code" sortable="true"  upper="true" required="true" editor="textfield" prompt="功能编号" width="100" />
@@ -64,6 +74,6 @@
 				<d:column name="last_update_user" align="center" prompt="最后经手人" width="100" />
 			</d:columns>
 		</d:grid>
-		
+
 	</body>
 </html>
