@@ -86,9 +86,36 @@
 		</sqls>
 	</execute>
 
+	<execute name="bs">
+		<param name="user_name" sourcePath="user_name.a"/>
+		<sqls>
+			<collisionSql where="1=2" message="#{@abc} hah"/>
+			<batchSql sourcePath="items" >
+				<batchExecuteSql sourcePath="roles">
+					<![CDATA[
+					    select
+						#BATCH_TEMPLATE_BEGIN#
+						 ${@u}
+						#BATCH_TEMPLATE_END#
+					]]>
+				</batchExecuteSql>
+				<execute name="hh"/>
+			</batchSql>
+			<execute name="hh"/>
+		</sqls>
+	</execute>
+
+	<execute name="hh">
+		<param name="user_name" sourcePath="user_name.a"/>
+		<sqls>
+			<collisionSql where="${@user_id} is null  and ${@user_name} is null and ${@role_id} is null" message="123"/>
+		</sqls>
+	</execute>
+
 	<execute name="batch">
 		<sqls>
-			<batchExecuteSql sourcePath="dataList" batchSize="10">
+			<query name="listByName" rootPath="param.dataList"/>
+			<batchExecuteSql sourcePath="param.dataList" batchSize="10">
 				<![CDATA[
 					 INSERT INTO sys_user
 						   (user_code,
