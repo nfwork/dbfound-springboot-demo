@@ -11,7 +11,7 @@ import java.util.List;
 @Configuration
 public class FilterConfig {
 
-    @Bean
+    //@Bean
     public FilterRegistrationBean<AccessCheckFilter> urlFilter() {
         FilterRegistrationBean<AccessCheckFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setOrder(1);
