@@ -87,13 +87,26 @@ $D = DBFound = {
 					Ext.get("dbfoundMask").unmask();
 					div.style.display = "none";
 				}
-				Ext.MessageBox.show( {
+				try{
+					var obj = Ext.util.JSON.decode(res.responseText);
+					if(obj.message){
+						Ext.MessageBox.show( {
+							title : '错误',
+							msg : obj.message,
+							buttons : Ext.MessageBox.OK,
+							icon : Ext.MessageBox.ERROR
+						});
+					}
+				} catch (e) {
+					Ext.MessageBox.show( {
 						title : '错误',
 						msg : res.responseText,
 						minWidth : $D.getFullWidth()-80,
 						buttons : Ext.MessageBox.OK,
 						icon : Ext.MessageBox.ERROR
-				});
+					});
+				}
+
 			},
 			params : param
 		});
