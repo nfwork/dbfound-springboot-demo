@@ -11,7 +11,9 @@ public class User {
     String userCode;
 
     @Column(name = "role_id")
-    Integer role;
+    Role role;
+
+    Boolean status;
 
     public Integer getUserId() {
         return userId;
@@ -25,11 +27,11 @@ public class User {
         return userName;
     }
 
-    public Integer getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(Integer role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -45,5 +47,11 @@ public class User {
         this.userCode = userCode;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
 
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 }

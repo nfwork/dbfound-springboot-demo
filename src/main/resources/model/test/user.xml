@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model xmlns="http://dbfound.googlecode.com/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dbfound.googlecode.com/model https://raw.githubusercontent.com/nfwork/dbfound/master/tags/model.xsd">
 
-	<query name="listByName">
+	<query name="listByName" entity="com.nfwork.dbfound.springboot.demo.dto.User">
 		<sql>
 			<![CDATA[
 				SELECT
 					u.user_id,
 					u.user_name,
 					u.role_id,
-					u.user_code
+					u.user_code,
+					u.status
 				FROM SYS_USER u
-				#WHERE_CLAUSE#
+				where ${@status} = true
+				and role_id = ${@role}
+				#AND_CLAUSE#
 			 ]]>
 		</sql>
 		<filter name="userName" dataType="varchar" express="user_name like ${@userName}"/>

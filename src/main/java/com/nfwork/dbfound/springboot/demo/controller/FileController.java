@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 @RestController
 public class FileController {
@@ -24,16 +25,13 @@ public class FileController {
 
 	@PostMapping("/sys/file/upload")
 	public void upload(@RequestParam("file") MultipartFile file, @ContextAware Context context) throws IOException {
-		try {
+		try (InputStream inputStream = file.getInputStream()){
 			context.setParamData("file_name", file.getOriginalFilename());
 			context.setParamData("file_type", file.getContentType());
 			context.setParamData("file_size", FileSizeCalculator.getFileSize(file.getSize()));
-			context.setParamData("file", file.getInputStream());
-
+			context.setParamData("file", inputStream);
 			ResponseObject responseObject = modelExecutor.execute(context, "upload", "add");
 			WebWriter.jsonWriter(context.response, JsonUtil.beanToJson(responseObject));
-		} finally {
-			file.getInputStream().close();
 		}
 	}
 }

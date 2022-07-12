@@ -1,5 +1,6 @@
 package com.nfwork.dbfound.springboot.demo.service;
 
+import com.nfwork.dbfound.springboot.demo.dto.Role;
 import com.nfwork.dbfound.springboot.demo.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ public class TestService {
 	}
 
 	public Object queryUser(User user) {
+		user.setStatus(true);
+		user.setRole(Role.ADMIN);
 		Object object = modelExecutor.queryList("test/user","listByName", user, User.class);
 		return object;
 	}
