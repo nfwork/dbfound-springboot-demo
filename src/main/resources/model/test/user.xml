@@ -12,7 +12,7 @@
 					u.status
 				FROM SYS_USER u
 				where ${@status} = true
-				and role_id = ${@role}
+				and role_id in (${@role})
 				#AND_CLAUSE#
 			 ]]>
 		</sql>

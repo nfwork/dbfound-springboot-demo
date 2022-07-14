@@ -17,6 +17,10 @@ public class TestService {
 	ModelExecutor modelExecutor;
 	
 	public Object query(Map param) {
+		Role[] role = {Role.ADMIN,Role.TEACHER, Role.STUDENT, null, null};
+
+		param.put("status",true);
+		param.put("role",role);
 		Object object = modelExecutor.queryList("test/user","listByName", param);
 		return object;
 	}
