@@ -2,6 +2,8 @@ package com.nfwork.dbfound.springboot.demo.dto;
 
 import com.nfwork.dbfound.model.reflector.Column;
 
+import java.util.Date;
+
 public class User {
 
     Integer  userId;
@@ -14,6 +16,16 @@ public class User {
     Role role;
 
     Boolean status;
+
+    Date create_date;
+
+    public Date getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(Date create_date) {
+        this.create_date = create_date;
+    }
 
     public Integer getUserId() {
         return userId;

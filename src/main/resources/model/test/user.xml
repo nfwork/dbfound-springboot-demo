@@ -2,6 +2,7 @@
 <model xmlns="http://dbfound.googlecode.com/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dbfound.googlecode.com/model https://raw.githubusercontent.com/nfwork/dbfound/master/tags/model.xsd">
 
 	<query name="listByName" entity="com.nfwork.dbfound.springboot.demo.dto.User">
+		<param name="status" dataType="number"/>
 		<sql>
 			<![CDATA[
 				SELECT
@@ -9,7 +10,8 @@
 					u.user_name,
 					u.role_id,
 					u.user_code,
-					u.status
+					u.status,
+					u.create_date
 				FROM SYS_USER u
 				where ${@status} = true
 				and role_id in (${@role})
@@ -20,16 +22,19 @@
 	</query>
 
 	<execute name="updateName">
-		<param name="userId" dataType="number" />
-		<param name="userName"/>
+		<param name="create_date" dataType="date"/>
 		<sqls>
 			<executeSql>
 				<![CDATA[
 				update sys_user set
-					user_name = ${@userName}
-				where user_id = ${@userId}
+					user_name = ${@user_name},
+					create_date = ${@create_date}
+				where user_id = ${@user_id}
 			  ]]>
 			</executeSql>
+			<printContext/>
+			<setContextData value="3" name="role" inCurrentPath="true"/>
+			<printContext/>
 		</sqls>
 	</execute>
 

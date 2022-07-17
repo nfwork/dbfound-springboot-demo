@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.nfwork.dbfound.starter.ModelExecutor;
 
+import java.util.Date;
 import java.util.Map;
 
 @Service
@@ -34,6 +35,9 @@ public class TestService {
 	
 	@Transactional
 	public Object updateUserName(User user) {
+		user.setUserId(10);
+		user.setUserName("小明");
+		user.setCreate_date(new Date());
 		return modelExecutor.execute( "test/user", "updateName",user);
 	}
 
