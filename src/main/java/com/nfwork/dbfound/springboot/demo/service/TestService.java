@@ -17,20 +17,18 @@ public class TestService {
 	@Autowired
 	ModelExecutor modelExecutor;
 	
-	public Object query(Map param) {
+	public Object query(Map<String,Object> param) {
 		Role[] role = {Role.ADMIN,Role.TEACHER, Role.STUDENT, null, null};
 
 		param.put("status",true);
 		param.put("role",role);
-		Object object = modelExecutor.queryList("test/user","listByName", param);
-		return object;
+		return modelExecutor.queryList("test/user","listByName", param);
 	}
 
 	public Object queryUser(User user) {
 		user.setStatus(true);
 		user.setRole(Role.ADMIN);
-		Object object = modelExecutor.queryList("test/user","listByName", user, User.class);
-		return object;
+		return modelExecutor.queryList("test/user","listByName", user, User.class);
 	}
 	
 	@Transactional
