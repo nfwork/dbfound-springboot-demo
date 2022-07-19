@@ -96,6 +96,14 @@ $D = DBFound = {
 							buttons : Ext.MessageBox.OK,
 							icon : Ext.MessageBox.ERROR
 						});
+					}else{
+						Ext.MessageBox.show( {
+							title : '错误',
+							msg : res.responseText,
+							minWidth : $D.getFullWidth()-80,
+							buttons : Ext.MessageBox.OK,
+							icon : Ext.MessageBox.ERROR
+						});
 					}
 				} catch (e) {
 					Ext.MessageBox.show( {
