@@ -113,10 +113,27 @@
 		</sqls>
 	</execute>
 
-	<execute name="hh">
-		<param name="user_name" sourcePath="user_name.a"/>
+	<execute>
+		<param name="date" dataType="date"/>
 		<sqls>
-			<collisionSql where="${@user_id} is null  and ${@user_name} is null and ${@role_id} is null" message="123"/>
+			<collisionSql where="${@user_id} != null and ${@date} is not null" message="hello" code="10000" />
+		</sqls>
+	</execute>
+
+	<execute name="hh">
+		<param name="length" dataType="number" sourcePath="user_name.length"/>
+		<sqls>
+			<caseSql>
+				<whenSql when="${@length} = 1">
+					<collisionSql where="${@length} = 1" message="hello world 1" code="10001"/>
+				</whenSql>
+				<whenSql when="${@length} = 2">
+					<collisionSql where="${@length} = 2" message="hello world 2" code="10001"/>
+				</whenSql>
+				<otherwiseSql>
+					<collisionSql where="${@length} = 3" message="hello world 3" code="10001"/>
+				</otherwiseSql>
+			</caseSql>
 		</sqls>
 	</execute>
 

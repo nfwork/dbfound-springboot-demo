@@ -140,8 +140,12 @@ $D = DBFound = {
 		}
 		
 		var successFunction = function(obj,response, action) {
+			var message = obj.message;
+			if(message == "success"){
+				message = "操作成功！";
+			}
 			if (obj.success == true) {
-				$D.showMessage(obj.message, function() {
+				$D.showMessage(message, function() {
 					if (type == "update") {
 						for (i = 0; i < records.length; i++) {
 							records[i].commit();
