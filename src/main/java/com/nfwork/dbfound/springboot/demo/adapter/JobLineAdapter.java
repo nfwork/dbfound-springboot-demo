@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Map;
 
 @Component
-public class JobLineAdapter implements QueryAdapter<Map> {
+public class JobLineAdapter implements QueryAdapter<Map<String, Object>> {
 
     @Autowired
     ModelExecutor modelExecutor;
