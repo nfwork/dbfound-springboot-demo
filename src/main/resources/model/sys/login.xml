@@ -11,7 +11,7 @@
 		<sqls>
 			<collisionSql where="not exists (select 1 from sys_user where user_code= ${@user_code})" message="用户名不存在！"/>
 			<collisionSql where="not exists (select 1 from sys_user where user_code= ${@user_code} and password =${@password})" message="密码不正确！"/>
-			<collisionSql where=" exists (select 1 from sys_user where user_code= ${@user_code} and status = 'N')" message="你的账号已冻结，目前不能使用！"/>
+			<collisionSql where="exists (select 1 from sys_user where user_code= ${@user_code} and status = 'N')" message="你的账号已冻结，目前不能使用！"/>
 		    <querySql>
 		      <![CDATA[
 			         SELECT
@@ -37,7 +37,7 @@
 		<param name="user_code" scope="session" dataType="varchar" autoCookie="true"/> 
 		<sqls>
 			<collisionSql where="not exists (select 1 from sys_user where user_code= ${@user_code})" message="用户（#{@user_code}）未开通系统权限"/>
-			<collisionSql where=" exists (select 1 from sys_user where user_code= ${@user_code} and status = 'N')" message="你的账号已冻结，目前不能使用！"/>
+			<collisionSql where="exists (select 1 from sys_user where user_code= ${@user_code} and status = 'N')" message="你的账号已冻结，目前不能使用！"/>
 		    <querySql>
 		      <![CDATA[
 			         SELECT
@@ -79,7 +79,7 @@
 		<param name="user_code" scope="session" dataType="varchar" autoCookie="true"/> 
 		<sqls>
 			<collisionSql where="not exists (select 1 from sys_user where user_code= ${@user_code})" message="用户（#{@user_code}）未开通系统权限"/>
-			<collisionSql where=" exists (select 1 from sys_user where user_code= ${@user_code} and status = 'N')" message="你的账号已冻结，目前不能使用！"/>
+			<collisionSql where="exists (select 1 from sys_user where user_code= ${@user_code} and status = 'N')" message="你的账号已冻结，目前不能使用！"/>
 		    <querySql>
 		      <![CDATA[
 			         SELECT

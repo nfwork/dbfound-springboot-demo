@@ -22,7 +22,7 @@
 		<sql>
 		 <![CDATA[
 			SELECT f.function_id,
-			       concat(concat(f.function_code,'-'),f.function_des)  function_des
+			       concat(f.function_code,'-', f.function_des) as  function_des
 				 FROM SYS_FUNCTION f
 			ORDER BY f.function_code
 		  ]]>
@@ -33,8 +33,8 @@
 		<sql>
 		 <![CDATA[
 			SELECT *,
-				  (select CONCAT(CONCAT(module_code,'-'),module_name) from sys_module where module_id = f.function_module ) module_code_name,
-				  (select CONCAT(CONCAT(user_code,'-'),user_name) from sys_user where user_id =f.last_update_by) last_update_user
+				  (select CONCAT(module_code,'-', module_name) from sys_module where module_id = f.function_module ) module_code_name,
+				  (select CONCAT(user_code,'-',user_name) from sys_user where user_id =f.last_update_by) last_update_user
 			FROM SYS_FUNCTION f
 			ORDER BY f.function_code desc
 			limit 1, 8

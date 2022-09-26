@@ -4,7 +4,7 @@
 		<sql>
 		  <![CDATA[
 			SELECT *,
-				(select CONCAT(CONCAT(user_code,'-'),user_name) from
+				(select CONCAT(user_code,'-',user_name) from
 				sys_user where user_id =f.last_update_by) last_update_user
 			FROM sys_module f
 			#WHERE_CLAUSE#
@@ -91,8 +91,8 @@
 		<sql>
 		 <![CDATA[
 			SELECT
-				m.module_id module_id,
-				CONCAT(CONCAT(module_code,'-'),module_name) module_name
+				m.module_id ,
+				CONCAT(module_code,'-',module_name) as module_name
 			 FROM sys_module m
 			order by m.priority
 		 ]]>

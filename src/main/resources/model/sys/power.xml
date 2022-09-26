@@ -7,11 +7,11 @@
 				SELECT
 					  f.*,
 					  p.power_id,
-					  IFNULL(p.role_id ,${@role_id}) role_id,
+					  IFNULL(p.role_id ,${@role_id}) as role_id,
 					  p.enable_flag,
 					  p.last_update_date p_last_update_date,
-					  (SELECT  CONCAT(CONCAT(user_code,'-'),user_name)  FROM SYS_USER  WHERE user_id = p.last_update_by)    last_update_user,
-					  (SELECT CONCAT(CONCAT(module_code,'-'),module_name) FROM sys_module  WHERE module_id = f.function_module)    module_code_name
+					  (SELECT CONCAT(user_code,'-', user_name)  FROM SYS_USER  WHERE user_id = p.last_update_by)  last_update_user,
+					  (SELECT CONCAT(module_code,'-', module_name) FROM sys_module  WHERE module_id = f.function_module)  module_code_name
 				FROM SYS_FUNCTION f LEFT JOIN SYS_POWER p
 				  ON f.function_id = p.function_id AND p.role_id = ${@role_id}
 				#WHERE_CLAUSE#  

@@ -5,7 +5,7 @@
 		 <![CDATA[
 				SELECT
 					  c.*,
-					  (SELECT  CONCAT(CONCAT(user_code,'-'),user_name)  FROM SYS_USER  WHERE user_id = c.last_update_by)    last_update_user
+					  (SELECT CONCAT(user_code,'-',user_name)  FROM SYS_USER  WHERE user_id = c.last_update_by) as last_update_user
 				FROM sys_access_control c 
 				#WHERE_CLAUSE#
 			   ORDER BY c.url
