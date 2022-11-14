@@ -49,7 +49,7 @@
 					 ]]>
 				</executeSql>
 			</whenSql>
-			<whenSql when="${@power_id} is not null">
+			<otherwiseSql>
 				<executeSql>
 			     <![CDATA[
 					update sys_power set 
@@ -59,7 +59,7 @@
 					where power_id = ${@power_id} 
 				 ]]>
 				</executeSql>
-			</whenSql>
+			</otherwiseSql>
 		</sqls>
 	</execute>
 </model>
