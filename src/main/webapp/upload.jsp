@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@page import="com.nfwork.dbfound.web.file.FileUploadUtil"%>
 <%@ taglib uri="dbfound-tags" prefix="d"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -50,7 +49,7 @@
         } else {
             fileSize = target.files[0].size;
         }
-        var maxSize=<%=FileUploadUtil.maxUploadSize%>;
+        var maxSize = 10;
         if(fileSize>maxSize*1024*1024){
             $D.showMessage("上传文件大小不能大于"+maxSize+"M!");
             return false;
