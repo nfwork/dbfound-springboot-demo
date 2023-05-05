@@ -16,7 +16,7 @@
 		<sql>
 		  <![CDATA[
 			SELECT e.employee_id,
-			       concat(concat(employee_code,'-'),employee_name) employee_name
+			       concat(employee_code,'-',employee_name) as employee_name
             FROM gc_employee e
 			order by employee_code
 		   ]]>

@@ -40,10 +40,10 @@
 		<d:form id="queryForm" title="结算查询" labelWidth="80">
 			<d:line columnWidth="0.33">
 			    <d:field name="project_id" options="projectStore" valueField="project_id" displayField="project_name" anchor="85%" editor="combo" prompt="工程选择" >
-			        <d:event name="select" handle="query"></d:event>
+			        <d:event name="select" handle="query"/>
 			    </d:field>
 			    <d:field name="employee_id" options="employeeStore" valueField="employee_id" displayField="employee_name" anchor="85%" editor="combo" prompt="工人选择" >
-			        <d:event name="select" handle="query"></d:event>
+			        <d:event name="select" handle="query"/>
 			    </d:field>
 			</d:line>
 		</d:form>
