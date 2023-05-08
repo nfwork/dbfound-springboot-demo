@@ -4,9 +4,11 @@ import com.nfwork.dbfound.core.Context;
 import com.nfwork.dbfound.core.DBFoundConfig;
 import com.nfwork.dbfound.model.adapter.ExecuteAdapter;
 import com.nfwork.dbfound.model.bean.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+@Component
 public class LogAdapter implements ExecuteAdapter {
 
     @Override
