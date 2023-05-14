@@ -48,7 +48,8 @@
 
     <springProfile name="dev">
         <logger name="org.springframework" level="INFO"/>
-        <root level="INFO">
+        <logger name="org.apache.commons.beanutils" level="INFO"/>
+        <root level="DEBUG">
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
