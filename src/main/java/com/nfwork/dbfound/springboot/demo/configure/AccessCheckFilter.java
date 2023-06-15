@@ -3,15 +3,10 @@ package com.nfwork.dbfound.springboot.demo.configure;
 import com.nfwork.dbfound.dto.ResponseObject;
 import com.nfwork.dbfound.util.JsonUtil;
 import com.nfwork.dbfound.web.WebWriter;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.*;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,9 +14,9 @@ import java.util.List;
 
 public class AccessCheckFilter implements Filter {
 
-	private List<String> excludeUrls = new ArrayList<String>();
+	private final List<String> excludeUrls = new ArrayList<>();
 
-	private List<String> SUFFIX = new ArrayList<String>();
+	private final List<String> SUFFIX = new ArrayList<>();
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
