@@ -76,7 +76,7 @@
 		
 		<script type="text/javascript">
 			userGrid.on("sortchange",function(grid,sortInfo){
-				userGrid.getStore().baseParams["sort"] = "order by "+ sortInfo.field +" " + sortInfo.direction;
+				userGrid.getStore().baseParams["sort"] = sortInfo.field +" " + sortInfo.direction;
 				userGrid.query();
 			})
 		</script>

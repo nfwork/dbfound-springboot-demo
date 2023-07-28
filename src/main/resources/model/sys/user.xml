@@ -2,9 +2,7 @@
 <model xmlns="http://dbfound.googlecode.com/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dbfound.googlecode.com/model https://raw.githubusercontent.com/nfwork/dbfound/master/tags/model.xsd">
 	
 	<query pagerSize="10" >
-		<param name="sort"/>
 		<sql>
-		 <![CDATA[
 			SELECT
 				u.user_id,
 				u.user_name,
@@ -18,8 +16,9 @@
 				u.password
 			FROM SYS_USER u
 			#WHERE_CLAUSE#
-			#{@sort}
-		 ]]>
+			<sqlPart type="if" condition="${@sort} is not null">
+				order by #{@sort}
+			</sqlPart>
 		</sql>
 		<filter name="timefrom" express="create_date &gt;= ${@timefrom}" />
 		<filter name="timeto" express="create_date &lt;= ${@timeto}" />
