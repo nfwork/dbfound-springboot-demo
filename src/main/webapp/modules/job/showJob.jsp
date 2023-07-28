@@ -19,7 +19,7 @@
     
 	<body>
 	    <d:initProcedure>
-	        <d:query modelName="job/jobHeader" queryName="update_query" rootPath="headerStore"></d:query>
+	        <d:query modelName="job/jobHeader" queryName="update_query" rootPath="request.headerStore"/>
 	    </d:initProcedure>
 	    
 		<d:form title="作业信息查询" labelWidth="80">
