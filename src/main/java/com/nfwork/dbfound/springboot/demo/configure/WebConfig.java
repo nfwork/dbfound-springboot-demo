@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @Configuration
-public class FilterConfig {
+public class WebConfig {
 
     @Bean
     public FilterRegistrationBean<AccessCheckFilter> urlFilter() {

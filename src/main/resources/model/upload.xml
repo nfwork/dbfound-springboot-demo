@@ -31,12 +31,12 @@
 
 	<execute name="add">
 		<param name="file_id" UUID="true" />
-		<param name="file_name" dataType="varchar" />
-		<param name="file_type" dataType="varchar" />
-		<param name="file_size" dataType="varchar" />
 		<param name="table_name" dataType="varchar" />
 		<param name="pk_value" dataType="varchar" />
-		<param name="file" dataType="file" />
+		<param name="file_content" sourcePath="file.content" dataType="file" />
+		<param name="file_name" sourcePath="file.name" dataType="varchar" />
+		<param name="file_type" sourcePath="file.content_type" dataType="varchar" />
+		<param name="file_size" sourcePath="file.size" dataType="varchar" />
 		<sqls>
 			<executeSql>
 	          <![CDATA[
@@ -50,7 +50,7 @@
 	                    pk_value)
 	             values (${@file_id},
 	                    ${@file_name},
-	                    ${@file},
+	                    ${@file_content},
 	                    ${@file_type},
 	                    ${@file_size},
 	                    ${@table_name},

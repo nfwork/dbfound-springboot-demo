@@ -47,7 +47,7 @@
 				<d:field name="status_code" anchor="85%" editor="combo" options="statusStore" displayField="status_name" valueField="status_code"  prompt="状态" />
 			</d:line>
 			<d:line columnWidth="0.33">
-			    <d:field name="role_id" editor="combo" options="roleStore" displayField="role_name" valueField="role_id" prompt="角色" anchor="85%" />
+			    <d:field name="role_id" editor="lovcombo" options="roleStore" displayField="role_name" valueField="role_id" prompt="角色" anchor="85%" />
 				<d:field name="timefrom" anchor="85%" editor="datefield" prompt="创建日期从" />
 				<d:field name="timeto" anchor="85%" editor="datefield" prompt="创建日期到" />
 			</d:line>
@@ -75,6 +75,9 @@
 		</d:grid>
 		
 		<script type="text/javascript">
+			userGrid.getStore().on("beforeload",function(){
+				this.baseParams["role_id"] = Ext.encode(this.baseParams["role_id"].split(",").filter(v=>v!=="").map(v=>v*1));
+			});
 			userGrid.on("sortchange",function(grid,sortInfo){
 				userGrid.getStore().baseParams["sort"] = sortInfo.field +" " + sortInfo.direction;
 				userGrid.query();

@@ -26,15 +26,22 @@
 			 if(checkFileSize(target)==false)return;
 			 Ext.getBody().mask('正在上传附件，请耐心等待.......', 'x-mask-loading');
 		     uploadform.form.submit({ 
-				    url:'sys/file/upload?pk_value=${param.pk_value}&table_name=${param.table_name}', 
+				    url:'upload.execute!add?pk_value=${param.pk_value}&table_name=${param.table_name}',
 				    method:'post',
+
 				    success:function(response, action){ 
 		    	        Ext.getBody().unmask();
 				    	fileGrid.query();
 				    }, 
-				    failure:function(response,action){ 
+				    failure:function(response,action){
+						let text = action.response.responseText.replace(/<.*?>/ig,"")
+						let obj = Ext.decode(text);
 				    	Ext.getBody().unmask();
-				    	alert(action.result.message +"!");
+						if(obj.success) {
+							fileGrid.query();
+						}else{
+							$D.showError(obj.message +"!");
+						}
 				    } 
 			});	  
 		 }else{
@@ -62,9 +69,9 @@
 	<body>
 	    <d:form id="uploadform" title="请选择文件" labelWidth="70" fileUpload="true" >
 			<d:line columnWidth="0.5">
-				<d:field columnWidth="0.7" name="file" id="file_cmp" anchor="90%" required="true" prompt="附 件" editor="file"></d:field>
+				<d:field columnWidth="0.7" name="file" id="file_cmp" anchor="90%" required="true" prompt="附 件" editor="file" />
 				<d:field columnWidth="0.3" width="80" editor="button" name="querybtn" prompt="上传">
-					<d:event name="click" handle="upload"></d:event>
+					<d:event name="click" handle="upload"/>
 				</d:field>
 			</d:line>
 	    </d:form>	

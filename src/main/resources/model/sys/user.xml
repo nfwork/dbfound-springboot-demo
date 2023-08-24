@@ -24,7 +24,7 @@
 		<filter name="timeto" express="create_date &lt;= ${@timeto}" />
 		<filter name="user_code" express="user_code like ${@user_code}" />
 		<filter name="user_name" express="user_name like ${@user_name}" />
-		<filter name="role_id" express="role_id = ${@role_id}" />
+		<filter name="role_id" dataType="collection" express="role_id in (${@role_id})" />
 		<filter name="status_code" express="status = ${@status_code}" />
 	</query>
 	
