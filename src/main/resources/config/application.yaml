@@ -23,7 +23,10 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-
+  servlet:
+    multipart:
+      max-file-size: 104857600
+      max-request-size: 104857600
 server:
   servlet:
     jsp:
