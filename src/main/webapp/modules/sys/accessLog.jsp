@@ -19,7 +19,7 @@
 
     function upload(){
         if (uploadform.form.isValid()) {
-            Ext.getBody().mask('正在上传附件，请耐心等待.......', 'x-mask-loading');
+            Ext.getBody().mask('正在导入数据，请耐心等待.......', 'x-mask-loading');
             uploadform.form.submit({
                 url:'sys/accessLog.execute!import',
                 method:'post',
@@ -77,7 +77,7 @@
 <body>
 <d:form id="uploadform" title="请选择文件" labelWidth="70" fileUpload="true" >
     <d:line columnWidth="0.5">
-        <d:field columnWidth="0.5" name="file" id="file_cmp" anchor="90%" required="true" prompt="附 件" editor="file" />
+        <d:field columnWidth="0.5" name="file" id="file_cmp" anchor="90%" required="true" prompt="数据文件" editor="file" />
         <d:field columnWidth="0.3" width="80" editor="button" name="querybtn" prompt="导入">
             <d:event name="click" handle="upload"/>
         </d:field>
@@ -123,5 +123,9 @@
         <d:column name="ua" prompt="ua" align="center" width="220" />
     </d:columns>
 </d:grid>
+
+<script type="application/javascript">
+    document.getElementById("file_cmp").accept = ".csv,.xls"
+</script>
 </body>
 </html>
