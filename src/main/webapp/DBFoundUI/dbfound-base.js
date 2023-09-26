@@ -234,12 +234,69 @@ $D = DBFound = {
 			var start = baseParams.start;
 			delete baseParams.limit;
 			delete baseParams.start;
-		    DBFound.openPostWindow(url, Ext.util.JSON.encode(cls), Ext.util.JSON.encode(baseParams));
+			var formData = new FormData();
+			formData.append('columns', Ext.util.JSON.encode(cls));
+			formData.append('parameters', Ext.util.JSON.encode(baseParams));
+		    DBFound.formDownload(url,formData);
 		    baseParams.limit = limit;
 		    baseParams.start = start;
 		});
 	},
+	formDownload: function(url, formData) {
+		Ext.getBody().mask('正在请求数据...', 'x-mask-loading');
+		// 创建xhr对象
+		var xhr = new XMLHttpRequest();
+		// 设置响应返回的数据格式
+		xhr.responseType = "blob";
+		// 创建一个 post 请求，采用异步
+		xhr.open('POST', url, true);
+		// 注册相关事件回调处理函数
+		xhr.onprogress = function (evt) {
+			if (evt.lengthComputable) {
+				let percent = evt.loaded / evt.total;
+				let progress = Math.floor(percent * 100);
+				Ext.getBody().unmask();
+				Ext.getBody().mask('正在下载...' + progress + "%", 'x-mask-loading');
+			}
+		}
+		xhr.onload = function () {
+			let filename = xhr.getResponseHeader("Content-Disposition");
+			if(filename){
+				let index  = filename.indexOf("=");
+				if(index > -1){
+					filename = filename.substring(index+1)
+				}
+			}
 
+			Ext.getBody().unmask();
+			// 请求完成
+			if (this.status === 200) {
+				Ext.getBody().mask('文件加载中...', 'x-mask-loading');
+				var blob = this.response;
+				// 判断是否是IE浏览器，是的话返回true
+				if (window.navigator.msSaveBlob) {
+					try {
+						window.navigator.msSaveBlob(blob, filename);
+					} catch (e) {
+						console.log(e);
+					}
+				} else {
+					var a = document.createElement('a');
+					a.download = filename;
+					a.href = URL.createObjectURL(blob);
+					a.click();
+					URL.revokeObjectURL(a.href);
+					setTimeout(() => {
+						Ext.getBody().unmask();
+					}, 3000);
+				}
+			} else {
+				$D.showError('导出失败');
+			}
+		};
+		//发送数据
+		xhr.send(formData);
+	},
 	/**
 	 * *** 格式化 grid中 日期控件
 	 */

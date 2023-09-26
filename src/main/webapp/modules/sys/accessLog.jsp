@@ -109,7 +109,7 @@
 
 <d:grid id="dataGrid" title="数据列表" pagerSize="50" forceFit="false" height="$D.getFullHeight('dataGrid')" queryForm="queryForm" model="sys/accessLog" autoQuery="true">
     <d:toolBar>
-        <d:gridButton type="excel"/>
+        <d:gridButton type="excel" action="sys/accessLog.export?export_type=csv"/>
     </d:toolBar>
     <d:columns>
         <d:column name="id" prompt="id" align="center" sortable="true" width="50"/>

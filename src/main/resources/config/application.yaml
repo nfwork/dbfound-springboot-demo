@@ -5,7 +5,7 @@ dbfound:
     base-path: ${@contextPath}
   datasource:
     db0:
-      url: jdbc:mysql://192.168.0.156/dbfound?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+      url: jdbc:mysql://127.0.0.1/dbfound?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: dbfound
       password: dbfound
