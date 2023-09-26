@@ -268,6 +268,19 @@ $D = DBFound = {
 				}
 			}
 
+			let contentLength = xhr.getResponseHeader("Content-Length");
+			if(contentLength) {
+				contentLength = contentLength * 1;
+			}
+			let delay = 500;
+			if(contentLength > 200 * 1024 * 1024){
+				delay = 3000;
+			}else if(contentLength > 100 * 1024 * 1024){
+				delay = 2000;
+			}else if(contentLength > 50 * 1024 * 1024){
+				delay = 1000;
+			}
+
 			Ext.getBody().unmask();
 			// 请求完成
 			if (this.status === 200) {
@@ -288,7 +301,7 @@ $D = DBFound = {
 					URL.revokeObjectURL(a.href);
 					setTimeout(() => {
 						Ext.getBody().unmask();
-					}, 3000);
+					}, delay);
 				}
 			} else {
 				$D.showError('导出失败');
