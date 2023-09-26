@@ -299,10 +299,10 @@ $D = DBFound = {
 					a.href = URL.createObjectURL(blob);
 					a.click();
 					URL.revokeObjectURL(a.href);
-					setTimeout(() => {
-						Ext.getBody().unmask();
-					}, delay);
 				}
+				setTimeout(() => {
+					Ext.getBody().unmask();
+				}, delay);
 			} else {
 				$D.showError('导出失败');
 			}
