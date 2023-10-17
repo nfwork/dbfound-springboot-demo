@@ -54,7 +54,7 @@ public class AccessCheckFilter implements Filter {
 				ResponseObject object = new ResponseObject();
 				object.setMessage("登录超时，请重新登录");
 				object.setSuccess(false);
-				WebWriter.jsonWriter(response, JsonUtil.beanToJson(object));
+				WebWriter.jsonWriter(response, JsonUtil.toJson(object));
 			}
 		} else {
 			filterChain.doFilter(servletRequest, servletResponse);

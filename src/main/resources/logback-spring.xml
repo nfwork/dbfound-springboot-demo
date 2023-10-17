@@ -46,9 +46,11 @@
         </encoder>
     </appender>
 
+    <logger name="org.apache.poi" level="WARN"/>
+    <logger name="com.zaxxer.hikari" level="WARN"/>
+
     <springProfile name="dev">
         <logger name="org.springframework" level="INFO"/>
-        <logger name="org.apache.commons.beanutils" level="INFO"/>
         <root level="DEBUG">
             <appender-ref ref="CONSOLE"/>
         </root>

@@ -17,8 +17,6 @@ spring:
   application:
     name: dbfound-springboot-demo
   jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: GMT+8
     property-naming-strategy: SNAKE_CASE
   mvc:
     pathmatch:

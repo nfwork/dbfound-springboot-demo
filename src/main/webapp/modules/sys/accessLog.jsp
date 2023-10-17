@@ -72,6 +72,12 @@
             return (size / Math.pow(num, 3)).toFixed(2) + "G"; //G
         return (size / Math.pow(num, 4)).toFixed(2) + "T"; //T
     }
+
+    function setFormat(grid){
+        grid.getStore().baseParams["export_filename"]= "访问日志.xlsx";
+        grid.exportFormats = {"size":"#,##0"};
+        return true;
+    }
 </script>
 
 <body>
@@ -109,7 +115,7 @@
 
 <d:grid id="dataGrid" title="数据列表" pagerSize="50" forceFit="false" height="$D.getFullHeight('dataGrid')" queryForm="queryForm" model="sys/accessLog" autoQuery="true">
     <d:toolBar>
-        <d:gridButton type="excel" action="sys/accessLog.export?export_type=csv"/>
+        <d:gridButton type="excel" beforeAction="setFormat"/>
     </d:toolBar>
     <d:columns>
         <d:column name="id" prompt="id" align="center" sortable="true" width="50"/>
@@ -125,7 +131,7 @@
 </d:grid>
 
 <script type="application/javascript">
-    document.getElementById("file_cmp").accept = ".csv,.xls"
+    document.getElementById("file_cmp").accept = ".csv,.xls,.xlsx"
 </script>
 </body>
 </html>

@@ -1,17 +1,15 @@
 package com.nfwork.dbfound.springboot.demo.configure;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.nfwork.dbfound.dto.ResponseObject;
-import com.nfwork.dbfound.model.reflector.Reflector;
+import com.nfwork.dbfound.util.JsonUtil;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
-import java.io.IOException;
+import java.time.temporal.Temporal;
+import java.util.Date;
 
 @Configuration
 public class JacksonConfig {
@@ -22,26 +20,11 @@ public class JacksonConfig {
     @PostConstruct
     public void objectMapper() {
         SimpleModule module = new SimpleModule();
-        module.addSerializer(ResponseObject.class, new ResponseObjectDeserializer());
+        module.addSerializer(ResponseObject.class, new JsonUtil.ResponseObjectDeserializer());
+        module.addSerializer(Temporal.class, new JsonUtil.TemporalDeserializer());
+        module.addSerializer(Enum.class, new JsonUtil.EnumDeserializer());
+        module.addSerializer(Date.class, new JsonUtil.DateDeserializer());
         objectMapper.registerModule(module);
-    }
-
-    public static class ResponseObjectDeserializer extends JsonSerializer<ResponseObject> {
-        @Override
-        public void serialize(ResponseObject responseObject, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-            jsonGenerator.writeStartObject();
-            Reflector reflector = Reflector.forClass(responseObject.getClass());
-            String[] properties = reflector.getGetablePropertyNames();
-            for (String property : properties){
-                Object value = null;
-                try {
-                    value = reflector.getGetInvoker(property).invoke(responseObject,null);
-                } catch (Exception ignored) {
-                }
-                jsonGenerator.writeObjectField(property,value);
-            }
-            jsonGenerator.writeEndObject();
-        }
     }
 }
 

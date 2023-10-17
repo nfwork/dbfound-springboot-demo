@@ -222,7 +222,8 @@ $D = DBFound = {
 					"name" : columns[i].dataIndex,
 					"content" : columns[i].header,
 					"width" : columns[i].width,
-					"mapper": grid.exportMappers[columns[i].dataIndex]
+					"mapper": grid.exportMappers[columns[i].dataIndex],
+					"format": grid.exportFormats[columns[i].dataIndex],
 				};
 				cls[i] = cl;
 			}
@@ -262,6 +263,7 @@ $D = DBFound = {
 		xhr.onload = function () {
 			let filename = xhr.getResponseHeader("Content-Disposition");
 			if(filename){
+				filename = decodeURI(filename);
 				let index  = filename.indexOf("=");
 				if(index > -1){
 					filename = filename.substring(index+1)
