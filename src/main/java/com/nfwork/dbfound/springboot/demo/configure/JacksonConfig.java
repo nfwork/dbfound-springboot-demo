@@ -20,10 +20,10 @@ public class JacksonConfig {
     @PostConstruct
     public void objectMapper() {
         SimpleModule module = new SimpleModule();
-        module.addSerializer(ResponseObject.class, new JsonUtil.ResponseObjectDeserializer());
-        module.addSerializer(Temporal.class, new JsonUtil.TemporalDeserializer());
-        module.addSerializer(Enum.class, new JsonUtil.EnumDeserializer());
-        module.addSerializer(Date.class, new JsonUtil.DateDeserializer());
+        module.addSerializer(ResponseObject.class, new JsonUtil.ResponseObjectSerializer());
+        module.addSerializer(Temporal.class, new JsonUtil.TemporalSerializer());
+        module.addSerializer(Enum.class, new JsonUtil.EnumSerializer());
+        module.addSerializer(Date.class, new JsonUtil.DateSerializer());
         objectMapper.registerModule(module);
     }
 }
