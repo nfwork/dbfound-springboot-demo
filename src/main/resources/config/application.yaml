@@ -18,9 +18,6 @@ spring:
     name: dbfound-springboot-demo
   jackson:
     property-naming-strategy: SNAKE_CASE
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
   servlet:
     multipart:
       max-file-size: 104857600
