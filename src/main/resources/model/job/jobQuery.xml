@@ -23,7 +23,7 @@
 			       l.teacher_comment,
 			       l.grade,
 			       (select count(1) from sys_upload_file f where f.table_name ='job_lines' and pk_value = line_id) att_num,
-			       (select c.code_name from sys_code c where c.code='JOB_LINE_STATUS'  and c.code_value= l.status ) status
+			       (select c.code_name from sys_code c where c.code='JOB_LINE_STATUS'  and c.code_value= l.status ) as status
 			FROM job_lines l
 			WHERE l.line_id = ${@line_id}
 		   ]]>
@@ -47,8 +47,8 @@
 				(select teacher_name from fnd_teacher te where te.teacher_id = t.teacher_id) teacher_name,
 				(select count(1) from sys_upload_file f where f.table_name ='job_headers' and pk_value = header_id) att_num,
 				t.last_update_by,
-				DATE_FORMAT(t.create_date,'%Y-%m-%d') create_date,
-				DATE_FORMAT(t.last_update_date,'%Y-%m-%d') last_update_date,
+				t.create_date,
+				t.last_update_date,
 			    (select CONCAT(CONCAT(user_code,'-'),user_name) from sys_user where user_id =t.last_update_by) last_update_user
 			FROM job_headers t
 			where t.teacher_id = (SELECT teacher_id FROM fnd_teacher s WHERE s.teacher_code = ${@user_code})

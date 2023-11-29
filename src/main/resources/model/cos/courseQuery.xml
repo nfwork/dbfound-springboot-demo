@@ -3,15 +3,14 @@
 	xsi:schemaLocation="http://dbfound.googlecode.com/model https://raw.githubusercontent.com/nfwork/dbfound/master/tags/model.xsd">
 	<query>
 		<sql>
-		  <![CDATA[
 			SELECT
-				concat(concat(teacher_code,'-'),teacher_name) teacher_name, 
+				concat(concat(teacher_code,'-'),teacher_name) as teacher_name,
 				class_name ,
-				concat(concat(branch_code,'-'),branch_name) branch_name,
+				concat(concat(branch_code,'-'),branch_name) as branch_name,
 				course_id,
 				t.last_update_by,
-				DATE_FORMAT(t.create_date,'%Y-%m-%d') create_date,
-				DATE_FORMAT(t.last_update_date,'%Y-%m-%d') last_update_date,
+				t.create_date,
+				t.last_update_date,
 			    (select CONCAT(CONCAT(user_code,'-'),user_name) from sys_user where user_id =t.last_update_by) last_update_user
 			FROM fnd_course t,fnd_class c,fnd_branch b,fnd_teacher te
 		    where t.class_id = c.class_id
@@ -22,7 +21,6 @@
 			 and t.enable_flag='Y'
 			#AND_CLAUSE#
 			order by c.class_code, t.create_date desc
-		   ]]>
 		</sql>
 		<filter name="timefrom" express="t.create_date &gt;= ${@timefrom}  " />
 		<filter name="timeto" express="t.create_date &lt;= ${@timeto} " />

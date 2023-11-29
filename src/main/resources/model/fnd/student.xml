@@ -13,8 +13,8 @@
 				t.class_id,
 				t.telphone_num,
 				t.last_update_by,
-				DATE_FORMAT(t.create_date,'%Y-%m-%d') create_date,
-				DATE_FORMAT(t.last_update_date,'%Y-%m-%d') last_update_date,
+				t.create_date,
+				t.last_update_date,
 			    (select CONCAT(CONCAT(user_code,'-'),user_name) from sys_user where user_id =t.last_update_by) last_update_user
 			FROM fnd_student t
 			#WHERE_CLAUSE#
@@ -145,7 +145,7 @@
 		  <![CDATA[
 			SELECT
 				t.student_id ,
-				 concat(concat(student_code,'-'),student_name) student_name
+				 concat(concat(student_code,'-'),student_name) as student_name
 			FROM fnd_student t
 			order by student_code
 		  ]]>

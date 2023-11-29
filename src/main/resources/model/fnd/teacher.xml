@@ -11,8 +11,8 @@
 				t.enable_flag,
 				t.telphone_num,
 				t.last_update_by,
-				DATE_FORMAT(t.create_date,'%Y-%m-%d') create_date,
-				DATE_FORMAT(t.last_update_date,'%Y-%m-%d') last_update_date,
+				t.create_date,
+				t.last_update_date,
 			    (select CONCAT(CONCAT(user_code,'-'),user_name) from sys_user where user_id =t.last_update_by) last_update_user
 			FROM fnd_teacher t
 			#WHERE_CLAUSE#
@@ -137,7 +137,7 @@
 		  <![CDATA[
 			SELECT
 				t.teacher_id ,
-				concat(concat(teacher_code,'-'),teacher_name) teacher_name
+				concat(concat(teacher_code,'-'),teacher_name) as teacher_name
 			FROM fnd_teacher t
 			order by teacher_code
 		  ]]>

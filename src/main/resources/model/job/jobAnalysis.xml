@@ -4,7 +4,7 @@
 		<param name="header_id" dataType="varchar" />
 		<sql>
 		  <![CDATA[
-			SELECT SUM(1) total_num, ifnull(l.grade,'未审批') grade  FROM  job_lines l WHERE l.status != 'NEW' and  l.header_id = ${@header_id} GROUP BY l.grade
+			SELECT SUM(1) total_num, ifnull(l.grade,'未审批') as grade  FROM  job_lines l WHERE l.status != 'NEW' and  l.header_id = ${@header_id} GROUP BY l.grade
 			 UNION 
 			SELECT
 			  (COUNT(1) - (SELECT count(1) FROM job_lines l WHERE l.status != 'NEW' and l.header_id = h.header_id ) ) total_num, '未提交' grade

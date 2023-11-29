@@ -28,8 +28,8 @@
 				u.role_id,
 				u.user_code,
 				u.status,
-				DATE_FORMAT(u.create_date,'%Y-%m-%d') create_date,
-				DATE_FORMAT(u.last_update_date,'%Y-%m-%d') last_update_date,
+				u.create_date,
+				u.last_update_date,
 				(select CONCAT(CONCAT(user_code,'-'),user_name) from sys_user where user_id =u.last_update_by) last_update_user,
 				u.create_date date,
 				u.password

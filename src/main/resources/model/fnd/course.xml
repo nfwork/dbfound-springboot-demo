@@ -15,7 +15,6 @@
 			AND t.enable_flag = 'Y'
 			AND t.teacher_id = (SELECT te.teacher_id FROM fnd_teacher te WHERE te.teacher_code = ${@user_code} )
 			and t.class_id =${@class_id}
-			ORDER BY b.branch_code
 		  ]]>
 		</sql>
 	</query>

@@ -59,7 +59,7 @@
 			  p.project_name,
 			  r.work_date,
 			  p.price,
-			  IFNULL(r.settlement_flag,'N') settlement_flag,
+			  IFNULL(r.settlement_flag,'N') as settlement_flag,
 			  r.settlement_date
 			FROM gc_employee e,
 			  gc_work_record r,

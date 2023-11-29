@@ -5,12 +5,12 @@
 		<sql>
 		  <![CDATA[
 			SELECT l.line_id,
-			       ifnull(l.description,'Not-Submit (未提交)') description,
+			       ifnull(l.description,'Not-Submit (未提交)') as description,
 			       l.score,
 			       l.teacher_comment,
 			       l.grade,
 			       (select count(1) from sys_upload_file f where f.table_name ='job_lines' and pk_value = line_id) att_num,
-			       concat(concat(s.student_code,'-'),s.student_name) student_name
+			       concat(concat(s.student_code,'-'),s.student_name) as student_name
 			FROM fnd_student s left join (select * from job_lines l
 			                                      where l.status != 'NEW'
 			                                        AND l.header_id = ${@header_id}) l
@@ -26,12 +26,12 @@
 		<sql>
 		  <![CDATA[
 			SELECT l.line_id,
-			       ifnull(l.description,'Not-Submit (未提交)') description,
+			       ifnull(l.description,'Not-Submit (未提交)') as description,
 			       l.score,
 			       l.teacher_comment,
 			       l.grade,
 			       (select count(1) from sys_upload_file f where f.table_name ='job_lines' and pk_value = line_id) att_num,
-			       concat(concat(s.student_code,'-'),s.student_name) student_name
+			       concat(concat(s.student_code,'-'),s.student_name) as student_name
 			FROM fnd_student s ,job_lines l
 			where l.status != 'NEW'
 			 AND l.header_id = ${@header_id}

@@ -9,8 +9,8 @@
 				class_code,
 				enable_flag,
 				t.last_update_by,
-				DATE_FORMAT(t.create_date,'%Y-%m-%d') create_date,
-				DATE_FORMAT(t.last_update_date,'%Y-%m-%d') last_update_date,
+				t.create_date,
+				t.last_update_date,
 			    (select CONCAT(CONCAT(user_code,'-'),user_name) from sys_user where user_id =t.last_update_by) last_update_user
 			FROM fnd_class t
 			#WHERE_CLAUSE#
