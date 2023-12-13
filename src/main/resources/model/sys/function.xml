@@ -4,8 +4,8 @@
 		<sql>
 		 <![CDATA[
 			SELECT f.*,
-				  (select CONCAT(CONCAT(module_code,'-'),module_name) from sys_module where module_id = f.function_module ) module_code_name,
-				  (select CONCAT(CONCAT(user_code,'-'),user_name) from sys_user where user_id =f.last_update_by) last_update_user
+				  (select CONCAT(module_code,'-',module_name) from sys_module where module_id = f.function_module ) module_code_name,
+				  (select CONCAT(user_code,'-',user_name) from sys_user where user_id =f.last_update_by) last_update_user
 			FROM SYS_FUNCTION f
 			#WHERE_CLAUSE#
 			ORDER BY f.function_code

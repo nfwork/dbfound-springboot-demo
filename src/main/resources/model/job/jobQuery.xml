@@ -41,15 +41,15 @@
 				(select c.class_name from fnd_class c where c.class_id = t.class_id) class_name,
 			    course_id,
 			    status status_code,
-			    (select  concat(concat(b.branch_code,'-'),b.branch_name) from fnd_branch b,fnd_course c where b.branch_id = c.branch_id and c.course_id= t.course_id) course_name,
-				(SELECT  code_name  FROM sys_code t where t.code='JOB_STATUS'  and t.code_value= status) status_name,
+			    (select concat(b.branch_code,'-',b.branch_name) from fnd_branch b,fnd_course c where b.branch_id = c.branch_id and c.course_id= t.course_id) course_name,
+				(SELECT code_name FROM sys_code t where t.code='JOB_STATUS'  and t.code_value= status) status_name,
 				end_time,
 				(select teacher_name from fnd_teacher te where te.teacher_id = t.teacher_id) teacher_name,
 				(select count(1) from sys_upload_file f where f.table_name ='job_headers' and pk_value = header_id) att_num,
 				t.last_update_by,
 				t.create_date,
 				t.last_update_date,
-			    (select CONCAT(CONCAT(user_code,'-'),user_name) from sys_user where user_id =t.last_update_by) last_update_user
+			    (select CONCAT(user_code,'-',user_name) from sys_user where user_id =t.last_update_by) last_update_user
 			FROM job_headers t
 			where t.teacher_id = (SELECT teacher_id FROM fnd_teacher s WHERE s.teacher_code = ${@user_code})
 			 #AND_CLAUSE#

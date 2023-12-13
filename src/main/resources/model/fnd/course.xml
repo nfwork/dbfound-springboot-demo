@@ -8,7 +8,7 @@
 		<sql>
 		  <![CDATA[
 			SELECT distinct
-			  concat(concat(b.branch_code,'-'),b.branch_name) course_name,
+			  concat(b.branch_code,'-',b.branch_name) course_name,
 			  t.course_id
 			FROM fnd_course t,fnd_branch b
 			WHERE t.branch_id = b.branch_id 
@@ -24,7 +24,7 @@
 		<sql>
 		  <![CDATA[
 			SELECT distinct
-			  concat(concat(b.branch_code,'-'),b.branch_name) course_name,
+			  concat(b.branch_code,'-',b.branch_name) course_name,
 			  t.course_id
 			FROM fnd_course t,fnd_branch b
 			WHERE t.branch_id = b.branch_id 
@@ -40,7 +40,7 @@
 		<sql>
 		  <![CDATA[
 			SELECT
-			  concat(concat(b.branch_code,'-'),b.branch_name) course_name,
+			  concat(b.branch_code,'-',b.branch_name) course_name,
 			  t.course_id
 			FROM fnd_course t,fnd_branch b
 			WHERE t.branch_id = b.branch_id 

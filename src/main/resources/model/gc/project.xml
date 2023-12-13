@@ -56,7 +56,7 @@
 		  <![CDATA[
 			SELECT
 				r.project_id ,
-				CONCAT(CONCAT(project_code,'-'),project_name) as project_name
+				CONCAT(project_code,'-',project_name) as project_name
 			FROM gc_project r
 			order by project_code
 		  ]]>

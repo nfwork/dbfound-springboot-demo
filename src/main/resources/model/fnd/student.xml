@@ -15,7 +15,7 @@
 				t.last_update_by,
 				t.create_date,
 				t.last_update_date,
-			    (select CONCAT(CONCAT(user_code,'-'),user_name) from sys_user where user_id =t.last_update_by) last_update_user
+			    (select CONCAT(user_code,'-',user_name) from sys_user where user_id =t.last_update_by) last_update_user
 			FROM fnd_student t
 			#WHERE_CLAUSE#
 			order by t.student_code
@@ -145,7 +145,7 @@
 		  <![CDATA[
 			SELECT
 				t.student_id ,
-				 concat(concat(student_code,'-'),student_name) as student_name
+				 concat(student_code,'-',student_name) as student_name
 			FROM fnd_student t
 			order by student_code
 		  ]]>

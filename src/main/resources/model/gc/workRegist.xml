@@ -10,7 +10,7 @@
 			SELECT e.*,
 			       ${@work_date} work_date,
 			       ${@project_id} project_id,
-			       (select CONCAT(CONCAT(project_code,'-'),project_name) from gc_project g where g.project_id = ${@project_id}) project_name
+			       (select CONCAT(project_code,'-',project_name) from gc_project g where g.project_id = ${@project_id}) project_name
 			 FROM gc_employee e
 			 where not exists (
 			   select 1 from gc_work_record r
@@ -42,7 +42,7 @@
 			SELECT r.*,
 				   e.employee_code,
 				   e.employee_name,
-			       (select CONCAT(CONCAT(project_code,'-'),project_name) from gc_project g where g.project_id = r.project_id) project_name
+			       (select CONCAT(project_code,'-',project_name) from gc_project g where g.project_id = r.project_id) project_name
 			 FROM gc_work_record r,gc_employee e
 			 where r.employee_id = e.employee_id
 			  and IFNULL(r.settlement_flag,'N') != 'Y'

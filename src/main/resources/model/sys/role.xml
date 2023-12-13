@@ -92,7 +92,7 @@
 		  <![CDATA[
 			SELECT
 				r.role_id ,
-				CONCAT(CONCAT(role_code,'-'),role_description) role_name
+				CONCAT(role_code,'-',role_description) role_name
 			FROM sys_role r
 			order by role_code
 		  ]]>

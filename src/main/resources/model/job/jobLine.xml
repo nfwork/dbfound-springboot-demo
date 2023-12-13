@@ -13,15 +13,15 @@
 				(select c.class_name from fnd_class c where c.class_id = t.class_id) class_name,
 			    course_id,
 			    T.status status_code,
-			    (select  concat(concat(b.branch_code,'-'),b.branch_name) from fnd_branch b,fnd_course c where b.branch_id = c.branch_id and c.course_id= t.course_id) course_name,
-				(SELECT  code_name  FROM sys_code SC where SC.code='JOB_STATUS' and SC.code_value= t.status) status_name,
+			    (select concat(b.branch_code,'-',b.branch_name) from fnd_branch b,fnd_course c where b.branch_id = c.branch_id and c.course_id= t.course_id) course_name,
+				(SELECT code_name  FROM sys_code SC where SC.code='JOB_STATUS' and SC.code_value= t.status) status_name,
 				end_time,
 				(select teacher_name from fnd_teacher te where te.teacher_id = t.teacher_id) teacher_name,
 				(select count(1) from sys_upload_file f where f.table_name ='job_headers' and pk_value = t.header_id) att_num,
 				t.last_update_by,
 				t.create_date,
 				t.last_update_date,
-			    (select CONCAT(CONCAT(user_code,'-'),user_name) from sys_user where user_id =t.last_update_by) last_update_user
+			    (select CONCAT(user_code,'-',user_name) from sys_user where user_id =t.last_update_by) last_update_user
 			FROM job_headers t ,job_lines l
 			where t.header_id= l.header_id
 			 and l.status = 'NEW'
@@ -50,16 +50,16 @@
 				(select c.class_name from fnd_class c where c.class_id = t.class_id) class_name,
 			    course_id,
 			    T.status status_code,
-			    (select  concat(concat(b.branch_code,'-'),b.branch_name) from fnd_branch b,fnd_course c where b.branch_id = c.branch_id and c.course_id= t.course_id) course_name,
-				(SELECT  code_name  FROM sys_code SC where SC.code='JOB_STATUS' and SC.code_value= t.status) status_name,
-				(SELECT  code_name  FROM sys_code SC where SC.code='JOB_LINE_STATUS' and SC.code_value= l.status) line_status_name,
+			    (select concat(b.branch_code,'-',b.branch_name) from fnd_branch b,fnd_course c where b.branch_id = c.branch_id and c.course_id= t.course_id) course_name,
+				(SELECT code_name FROM sys_code SC where SC.code='JOB_STATUS' and SC.code_value= t.status) status_name,
+				(SELECT code_name FROM sys_code SC where SC.code='JOB_LINE_STATUS' and SC.code_value= l.status) line_status_name,
 				end_time,
 				(select teacher_name from fnd_teacher te where te.teacher_id = t.teacher_id) teacher_name,
 				(select count(1) from sys_upload_file f where f.table_name ='job_headers' and pk_value = t.header_id) att_num,
 				t.last_update_by,
 				t.create_date,
 				t.last_update_date,
-			    (select CONCAT(CONCAT(user_code,'-'),user_name) from sys_user where user_id =t.last_update_by) last_update_user
+			    (select CONCAT(user_code,'-',user_name) from sys_user where user_id =t.last_update_by) last_update_user
 			FROM job_headers t ,job_lines l
 			where t.header_id= l.header_id
 			 and l.student_id=(SELECT student_id FROM fnd_student s WHERE s.student_code = ${@user_code})
