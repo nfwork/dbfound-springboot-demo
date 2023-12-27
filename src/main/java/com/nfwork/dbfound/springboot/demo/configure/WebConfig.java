@@ -19,7 +19,7 @@ public class WebConfig {
         AccessCheckFilter urlFilter = new AccessCheckFilter();
         registrationBean.setFilter(urlFilter);
        
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         list.add("/*");
         registrationBean.setUrlPatterns(list);
         

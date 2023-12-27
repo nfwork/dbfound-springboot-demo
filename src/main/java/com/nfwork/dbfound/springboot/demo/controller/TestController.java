@@ -1,15 +1,13 @@
 package com.nfwork.dbfound.springboot.demo.controller;
 
+import com.github.nfwork.dbfound.starter.annotation.ContextAware;
+import com.nfwork.dbfound.core.Context;
 import com.nfwork.dbfound.springboot.demo.dto.User;
 import com.nfwork.dbfound.springboot.demo.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.github.nfwork.dbfound.starter.ModelExecutor;
-import com.github.nfwork.dbfound.starter.annotation.ContextAware;
-import com.nfwork.dbfound.core.Context;
 
 import java.util.Map;
 
@@ -20,7 +18,7 @@ public class TestController {
 	TestService testService;
 
 	@RequestMapping("query")
-	public Object query(@RequestParam Map param) {
+	public Object query(@RequestParam Map<String,Object> param) {
 		return testService.query(param);
 	}
 
