@@ -27,3 +27,5 @@ server:
     jsp:
       init-parameters:
         development: true
+    session:
+      timeout: 120m
