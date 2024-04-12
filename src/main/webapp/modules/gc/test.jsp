@@ -54,7 +54,7 @@
 				top: 0;
 				width: 428px;
 				height: 330px;
-				background-image:url(images/calendar/body.jpg);
+				background-image:url("images/calendar/body.jpg");
 			}
 			
 			.calendar-cell {
@@ -69,7 +69,7 @@
 			}
 			
 			.calendar-cell-head {
-			    background-image:url(images/calendar/header.jpg);
+			    background-image:url("images/calendar/header.jpg");
 			    text-align:center;
 				padding-top: 12px;
 				position: absolute;
@@ -92,7 +92,7 @@
 		</style>
 	</head>
 	<d:initProcedure>
-		<d:query modelName="gc/workRegist" queryName="displayQuery" rootPath="das" />
+		<d:query modelName="gc/workRegist" queryName="displayQuery" rootPath="request.das" />
 	</d:initProcedure>
 	<%
 	    int year = 2013;

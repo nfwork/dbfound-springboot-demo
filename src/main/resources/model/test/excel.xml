@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://dbfound.googlecode.com/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://dbfound.googlecode.com/model https://raw.githubusercontent.com/nfwork/dbfound/master/tags/model.xsd">
+
+	<query>
+		<sql>
+			select * from user
+		</sql>
+	</query>
+
+    <execute name="import">
+		<param name="users_file" dataType="file" fileSaveType="disk" value="/Users/admin/users.xls" />
+		<sqls>
+			<excelReader sourceParam="users_file" requiredDataType="map" rootPath="users" />
+			<batchExecuteSql sourcePath="users.sheet1">
+				insert into user
+				    (user_code, user_name, password,create_date, create_by)
+				values
+				#BATCH_TEMPLATE_BEGIN#
+					(${@用户账号},${@用户昵称},1,now(),1)
+				#BATCH_TEMPLATE_END#
+			</batchExecuteSql>
+		</sqls>
+	</execute>
+
+	<execute name="clear">
+		<sqls>
+			<executeSql>
+				truncate user
+			</executeSql>
+		</sqls>
+	</execute>
+
+</model>
