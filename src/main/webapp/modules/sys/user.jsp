@@ -75,9 +75,9 @@
 		</d:grid>
 		
 		<script type="text/javascript">
-			userGrid.getStore().on("beforeload",function(){
-				this.baseParams["role_id"] = Ext.encode(this.baseParams["role_id"].split(",").filter(v=>v!=="").map(v=>v*1));
-			});
+			// userGrid.getStore().on("beforeload",function(){
+			// 	this.baseParams["role_id"] = Ext.encode(this.baseParams["role_id"].split(",").filter(v=>v!=="").map(v=>v*1));
+			// });
 			userGrid.on("sortchange",function(grid,sortInfo){
 				userGrid.getStore().baseParams["sort"] = sortInfo.field +" " + sortInfo.direction;
 				userGrid.query();

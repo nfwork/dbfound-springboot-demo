@@ -19,6 +19,6 @@
 	
 	<execute name="jsp">
 		<param name="file_name" dataType="varchar"/>
-		<param name="file" dataType="file" fileSaveType="disk" ioType="both" fileNameParam="file_name"/>
+		<param name="file" dataType="file" ioType="both" fileNameParam="file_name"/>
 	</execute>
 </model>

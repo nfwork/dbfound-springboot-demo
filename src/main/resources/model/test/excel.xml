@@ -9,10 +9,10 @@
 	</query>
 
     <execute name="import">
-		<param name="users_file" dataType="file" fileSaveType="disk" value="/Users/admin/users.xls" />
+		<param name="users_file" dataType="file" value="/Users/admin/users.xlsx" />
 		<sqls>
-			<excelReader sourceParam="users_file" requiredDataType="map" rootPath="users" />
-			<batchExecuteSql sourcePath="users.sheet1">
+			<excelReader sourceParam="users_file" rootPath="users" />
+			<batchExecuteSql sourcePath="users[0].value">
 				insert into user
 				    (user_code, user_name, password,create_date, create_by)
 				values
