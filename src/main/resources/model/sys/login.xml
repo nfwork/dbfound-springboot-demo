@@ -69,28 +69,4 @@
 			</executeSql>
 		</sqls>
 	</execute>
-	
-	<execute name="unifyLogin">
-		<param name="user_id" dataType="number" autoSession="true"/>
-		<param name="role_id" dataType="number" autoSession="true"/>
-		<param name="user_name" dataType="varchar" autoSession="true"/>
-		<param name="role_description" dataType="varchar" autoSession="true"/>
-		<param name="password" dataType="varchar" />
-		<param name="user_code" scope="session" dataType="varchar" autoCookie="true"/> 
-		<sqls>
-			<collisionSql where="not exists (select 1 from sys_user where user_code= ${@user_code})" message="用户（#{@user_code}）未开通系统权限"/>
-			<collisionSql where="exists (select 1 from sys_user where user_code= ${@user_code} and status = 'N')" message="你的账号已冻结，目前不能使用！"/>
-		    <querySql>
-		      <![CDATA[
-			         SELECT
-						user_id,
-						role_id,
-						user_name,
-						(select r.role_description from sys_role r where r.role_id =u.role_id  ) role_description
-					 FROM SYS_USER u
-					WHERE u.user_code=${@user_code}
-			   ]]>
-		    </querySql>
-		</sqls>
-	</execute>
 </model>
