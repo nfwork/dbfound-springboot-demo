@@ -5,15 +5,15 @@
 	<query>
 		<sql>
 			 select
-			    <sqlPart type="if" condition="${@group} is null">
-					id,time,ip,url,status,cost,size,ua, 1 as times
-				</sqlPart>
-				<sqlPart type="if" condition="${@group} is not null">
+				<sqlPart type="if" sourcePath="group">
 					#{@group}, count(1) times, sum(size) as size
+				</sqlPart>
+			    <sqlPart type="else" >
+					id,time,ip,url,status,cost,size,ua, 1 as times
 				</sqlPart>
 			 from access_log t
 			 #WHERE_CLAUSE#
-			 <sqlPart type="if" condition="${@group} is not null">
+			 <sqlPart type="if" sourcePath="group">
 				 group by #{@group} order by times desc
 			 </sqlPart>
 		</sql>
@@ -28,9 +28,7 @@
 		<sqls>
 			<excelReader sourceParam="file" rootPath="datas"/>
 			<execute name="truncate" />
-			<batchSql sourcePath="datas">
-				<execute name="add" />
-			</batchSql>
+			<execute name="add" />
 		</sqls>
 	</execute>
 
@@ -43,7 +41,7 @@
 		<param name="size" dataType="number" />
 		<param name="ua" dataType="varchar" />
 		<sqls>
-			<batchExecuteSql sourcePath="value" batchSize="500">
+			<batchExecuteSql sourcePath="param.datas[0]" batchSize="500">
 				insert into access_log(
 						time,
 						ip,
