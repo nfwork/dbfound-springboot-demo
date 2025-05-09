@@ -7,6 +7,6 @@
 <script type="text/javascript" src="${basePath}DBFoundUI/dbfound-grid.js?v2" charset='utf-8'></script>
 <script type="text/javascript" src="${basePath}DBFoundUI/plugin/SpinnerField.js" charset='utf-8'></script>
 <script type="text/javascript" src="${basePath}DBFoundUI/plugin/DateTimeField.js" charset='utf-8'></script>
-<script type="text/javascript" src="${basePath}DBFoundUI/plugin/LovCombo.js" charset='utf-8'></script>
+<script type="text/javascript" src="${basePath}DBFoundUI/plugin/LovCombo.js?v=1" charset='utf-8'></script>
 <link rel='stylesheet' href='${basePath}DBFoundUI/resources/css/ext-all.css'type='text/css'/>
 <link rel='stylesheet' href='${basePath}DBFoundUI/resources/css/dbfound.css'type='text/css'/>
