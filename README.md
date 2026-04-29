@@ -85,6 +85,18 @@ http://localhost:8080/login.jsp
 
 登录后可查看系统管理、基础数据、测试页面等示例模块。
 
+## JSON 序列化说明
+
+本项目包含 `dbfoundui` 前端页面资源，因此 `JacksonConfig` 中启用了 dbfound 提供的 `ResponseObjectSerializer`：
+
+```java
+module.addSerializer(ResponseObject.class, new JsonUtil.ResponseObjectSerializer());
+```
+
+`ResponseObjectSerializer` 主要用于适配 `dbfoundui`。启用后，`ResponseObject` 响应中的 `outParam`、`totalCounts` 会保持 dbfoundui 期望的驼峰命名，不会被 Jackson 的命名策略转换为 `out_param`、`total_counts`。
+
+如果项目是纯前后端分离接口服务，并且不使用 `dbfoundui`，通常不需要配置 `ResponseObjectSerializer`，可以让响应字段遵循项目统一的 Jackson 命名策略。本 demo 因为要兼容 `dbfoundui`，所以保留该配置。
+
 ## 说明
 
 - `src/main/resources/model` 下的 XML 文件是 dbfound 模型配置，定义了查询、保存、删除、校验等数据操作。
