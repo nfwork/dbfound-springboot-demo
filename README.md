@@ -4,9 +4,9 @@
 
 ## 技术栈
 
-- Java 11
-- Spring Boot 2.7.15
-- dbfound-spring-boot-starter 3.7.0
+- Java 17
+- Spring Boot 3.1.2
+- dbfound-spring-boot-starter 4.3.6
 - JSP + dbfoundui
 - MySQL
 - Maven
