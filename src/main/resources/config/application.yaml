@@ -1,8 +1,6 @@
 dbfound:
   system:
     model-modify-check: true
-  web:
-    base-path: ${@contextPath}
   datasource:
     db0:
       url: jdbc:mysql://127.0.0.1/dbfound?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
