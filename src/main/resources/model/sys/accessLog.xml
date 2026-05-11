@@ -41,7 +41,7 @@
 		<param name="size" dataType="number" />
 		<param name="ua" dataType="varchar" />
 		<sqls>
-			<batchExecuteSql sourcePath="param.datas[0]" batchSize="500">
+			<batchExecuteSql sourcePath="param.datas[0]" batchSize="50">
 				insert into access_log(
 						time,
 						ip,
