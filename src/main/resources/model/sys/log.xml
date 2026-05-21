@@ -2,7 +2,7 @@
 <model xmlns="http://dbfound.googlecode.com/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://dbfound.googlecode.com/model https://raw.githubusercontent.com/nfwork/dbfound/master/tags/model.xsd">
 
-	<execute adapter="com.nfwork.dbfound.springboot.demo.adapter.LogAdapter">
+	<execute>
 		<param name="open" dataType="varchar" />
 	</execute>
 
