@@ -73,9 +73,19 @@
         return (size / Math.pow(num, 4)).toFixed(2) + "T"; //T
     }
 
+    function formatStatus(status) {
+        if (status === undefined || status === null || status === "")
+            return "";
+        var color = status == 200 ? "green" : "red";
+        return "<span style='color:" + color + ";'>" + status + "</span>";
+    }
+
     function setFormat(grid){
         grid.getStore().baseParams["export_filename"]= "访问日志.xlsx";
-        grid.exportFormats = {"size":"#,##0"};
+        grid.exportFormats = {
+            "size":"#,##0",
+            "status":"[Green][=200]0;[Red][<>200]0;[Red]0;[Red]@"
+        };
         return true;
     }
 </script>
@@ -123,7 +133,7 @@
         <d:column name="url" prompt="url" align="center" width="200"/>
         <d:column name="ip" prompt="ip" align="center" width="120" />
         <d:column name="times" prompt="times" align="center" width="80" sortable="true" />
-        <d:column name="status" prompt="status" align="center" width="80" sortable="true" />
+        <d:column name="status" prompt="status" renderer="formatStatus" align="center" width="80" sortable="true" />
         <d:column name="cost" prompt="cost" align="center" width="80" sortable="true" />
         <d:column name="size" prompt="size" renderer="formatSize" align="center" width="80" sortable="true" />
         <d:column name="ua" prompt="ua" align="center" width="220" />
